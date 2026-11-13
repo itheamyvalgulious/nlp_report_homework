@@ -168,6 +168,20 @@
   .fund .idx{font-size:11px;letter-spacing:.14em;color:var(--accent);}
   .fund .item p{margin-top:7px;font-size:14.5px;line-height:1.72;color:var(--body);}
 
+  /* ---------- live demo ---------- */
+  .center-body{align-items:center;justify-content:center;}
+  .reveal a.linkbtn{
+    display:inline-flex;align-items:center;gap:20px;
+    padding:24px 46px;
+    font-family:var(--serif);font-size:34px;line-height:1.2;
+    color:var(--ink);text-decoration:none;
+    border:1px solid rgba(150,56,44,.55);background:rgba(255,255,255,.5);
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .reveal a.linkbtn .arrow{color:var(--accent);font-size:28px;transition:color .2s;}
+  .reveal a.linkbtn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper);}
+  .reveal a.linkbtn:hover .arrow{color:var(--paper);}
+
   /* ---------- misc ---------- */
   .reveal .progress{height:3px;color:var(--accent);}
   .reveal .progress span{background:var(--accent);}
@@ -354,36 +368,10 @@
   </section>
 
 
-  <!-- 5. current system: data flow -->
+  <!-- 5. VLM -->
   <section class="slide"><div class="frame">
     <div class="head">
-      <span class="eyebrow"><b>05</b>Current System</span>
-      <span class="tag">数据流</span>
-    </div>
-    <h2 class="title-lg">现有系统：从音视频到笔记</h2>
-    <div class="body diagram-body">
-      <img class="diagram" src="assets/diagrams/flow.svg" alt="SJTU-Skipper 的音视频流、语音转写、视觉识别与笔记生成流程图">
-    </div>
-    </div>
-  </section>
-
-  <!-- 6. current system: code + plugins -->
-  <section class="slide"><div class="frame">
-    <div class="head">
-      <span class="eyebrow"><b>06</b>Current System</span>
-      <span class="tag">插件架构</span>
-    </div>
-    <h2 class="title-lg">现有系统：代码组织</h2>
-    <div class="body diagram-body">
-      <img class="diagram" src="assets/diagrams/plugins.svg" alt="SJTU-Skipper 的代码分层与插件依赖 DAG">
-    </div>
-    </div>
-  </section>
-
-  <!-- 7. VLM -->
-  <section class="slide"><div class="frame">
-    <div class="head">
-      <span class="eyebrow"><b>07</b>VLM Part</span>
+      <span class="eyebrow"><b>05</b>VLM Part</span>
       <span class="tag">视觉</span>
     </div>
     <h2 class="title-lg">把课堂画面转成文本</h2>
@@ -412,7 +400,7 @@
   <!-- 6. STT -->
   <section class="slide"><div class="frame">
     <div class="head">
-      <span class="eyebrow"><b>08</b>STT Part</span>
+      <span class="eyebrow"><b>06</b>STT Part</span>
       <span class="tag">语音</span>
     </div>
     <h2 class="title-lg">语音转文字</h2>
@@ -431,7 +419,7 @@
   <!-- 9. NLP basics -->
   <section class="slide"><div class="frame">
     <div class="head">
-      <span class="eyebrow"><b>09</b>NLP Part</span>
+      <span class="eyebrow"><b>07</b>NLP Part</span>
       <span class="tag">01–07 · 基础</span>
     </div>
     <h2 class="title-lg">基础功能</h2>
@@ -473,7 +461,7 @@
   <!-- 8. NLP extensions A -->
   <section class="slide"><div class="frame">
     <div class="head">
-      <span class="eyebrow"><b>10</b>NLP Part</span>
+      <span class="eyebrow"><b>08</b>NLP Part</span>
       <span class="tag">01–03 · 扩展</span>
     </div>
     <h2 class="title-lg">扩展功能</h2>
@@ -502,7 +490,7 @@
   <!-- 9. NLP extensions B -->
   <section class="slide"><div class="frame">
     <div class="head">
-      <span class="eyebrow"><b>11</b>NLP Part</span>
+      <span class="eyebrow"><b>09</b>NLP Part</span>
       <span class="tag">04–06 · 扩展</span>
     </div>
     <h2 class="title-lg">扩展功能（续）</h2>
@@ -529,10 +517,49 @@
   </section>
 
 
-  <!-- 12. expected value -->
+  <!-- 10. current system: live demo -->
   <section class="slide"><div class="frame">
     <div class="head">
-      <span class="eyebrow"><b>12</b>Value</span>
+      <span class="eyebrow"><b>10</b>Current System</span>
+      <span class="tag">在线演示</span>
+    </div>
+    <h2 class="title-lg">现有系统：已经跑起来了</h2>
+    <div class="body center-body">
+      <a class="linkbtn" href="http://10.82.90.210:16220/" target="_blank" rel="noopener">当前进度<span class="arrow">↗</span></a>
+    </div>
+    </div>
+  </section>
+
+  <!-- 11. current system: data flow -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>11</b>Current System</span>
+      <span class="tag">数据流</span>
+    </div>
+    <h2 class="title-lg">现有系统：从音视频到笔记</h2>
+    <div class="body diagram-body">
+      <img class="diagram" src="assets/diagrams/flow.svg" alt="SJTU-Skipper 的音视频流、语音转写、视觉识别与笔记生成流程图">
+    </div>
+    </div>
+  </section>
+
+  <!-- 12. current system: code + plugins -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>12</b>Current System</span>
+      <span class="tag">插件架构</span>
+    </div>
+    <h2 class="title-lg">现有系统：代码组织</h2>
+    <div class="body diagram-body">
+      <img class="diagram" src="assets/diagrams/plugins.svg" alt="SJTU-Skipper 的代码分层与插件依赖 DAG">
+    </div>
+    </div>
+  </section>
+
+  <!-- 13. expected value -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>13</b>Value</span>
       <span class="tag">预期价值</span>
     </div>
     <h2 class="title-lg">预期价值</h2>
