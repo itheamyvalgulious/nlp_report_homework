@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我再也不想听课了 · 开题报告</title>
+<link rel="stylesheet" href="vendor/reveal/dist/reveal.css">
+<style>
+  :root{
+    --paper:#f7f3ea;
+    --ink:#1c1b18;
+    --body:#3d3a33;
+    --muted:#797266;
+    --accent:#96382c;
+    --line:rgba(28,27,24,.16);
+    --serif:"Noto Serif CJK SC","Source Han Serif SC","Songti SC",serif;
+    --sans:"Noto Sans CJK SC","Source Han Sans SC","PingFang SC",sans-serif;
+  }
+
+  html,body{background:var(--paper);}
+  .reveal-viewport{background:var(--paper);}
+
+  .reveal{
+    font-family:var(--sans);
+    font-size:24px;
+    line-height:1.6;
+    color:var(--ink);
+    letter-spacing:.01em;
+  }
+  .reveal .slides{text-align:left;}
+  .reveal .slides section{height:720px;box-sizing:border-box;}
+  .reveal h1,.reveal h2,.reveal h3,.reveal p{
+    font-family:inherit;text-transform:none;letter-spacing:0;
+    margin:0;color:inherit;
+  }
+  .reveal h1,.reveal h2,.reveal h3{font-family:var(--serif);font-weight:600;line-height:1.3;}
+
+  .reveal .slides section.slide{
+    height:720px;box-sizing:border-box;
+    background:
+      radial-gradient(120% 90% at 100% 0%, rgba(150,56,44,.045), transparent 55%),
+      var(--paper);
+  }
+  .frame{
+    height:100%;box-sizing:border-box;
+    display:flex;flex-direction:column;
+    padding:46px 72px 34px;
+  }
+
+  .head{
+    display:flex;align-items:baseline;gap:14px;
+    padding-bottom:13px;border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-size:14px;letter-spacing:.22em;color:var(--muted);
+    text-transform:uppercase;
+  }
+  .eyebrow b{color:var(--accent);font-weight:600;margin-right:12px;letter-spacing:.1em;}
+  .head .tag{margin-left:auto;font-size:13px;letter-spacing:.16em;color:var(--muted);}
+
+  .reveal h2.title-lg{
+    font-size:46px;line-height:1.22;
+    margin-top:34px;
+  }
+  .title-lg .cn{color:var(--ink);}
+  .lead{
+    margin-top:14px;font-size:19px;color:var(--muted);
+  }
+
+  .body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;}
+
+  /* ---------- cover ---------- */
+  .reveal .slides section.cover .frame{justify-content:space-between;padding:64px 84px 52px;}
+  .cover-top{display:flex;align-items:center;gap:16px;}
+  .cover-top .kicker{
+    font-size:14px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;
+  }
+  .cover-top .rule{flex:1;height:1px;background:var(--line);}
+  .cover-main{display:flex;flex-direction:column;justify-content:center;flex:1;padding:20px 0;}
+  .cover h1{
+    font-size:84px;line-height:1.12;letter-spacing:.01em;
+  }
+  .cover h1 span{display:block;}
+  .cover .sub{
+    margin-top:34px;max-width:890px;
+    font-size:21px;line-height:1.85;color:var(--body);
+    font-family:var(--sans);
+  }
+  .cover .sub .accent{color:var(--accent);}
+  .cover-foot{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:14px;letter-spacing:.16em;color:var(--muted);
+    border-top:1px solid var(--line);padding-top:18px;
+  }
+
+  /* ---------- numbered rows (pain / users) ---------- */
+  .rows{display:flex;flex-direction:column;margin-top:8px;}
+  .rows .row{
+    display:grid;grid-template-columns:96px 1fr;align-items:baseline;
+    padding:24px 0;border-bottom:1px solid var(--line);
+  }
+  .rows .row:first-child{border-top:1px solid var(--line);}
+  .rows .num{
+    font-family:var(--serif);font-size:20px;color:var(--accent);letter-spacing:.08em;
+  }
+  .rows .txt{font-family:var(--serif);font-size:32px;line-height:1.45;}
+  .rows .txt .sym{color:var(--accent);}
+  .rows.big .row{padding:32px 0;}
+  .rows.big .txt{font-size:36px;}
+
+  /* ---------- positioning ---------- */
+  .state{
+    font-family:var(--serif);font-size:42px;line-height:1.6;max-width:1080px;
+  }
+  .state .accent{color:var(--accent);}
+  .reveal p.state-sub{
+    margin-top:38px;font-size:25px;line-height:1.85;color:var(--body);
+  }
+
+  /* ---------- overview ---------- */
+  .parts{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:26px;align-items:stretch;}
+  .part{
+    display:flex;flex-direction:column;
+    padding:26px 26px 24px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.4);
+  }
+  .part .no{font-size:12px;letter-spacing:.2em;color:var(--accent);}
+  .part h3{font-size:29px;margin-top:6px;}
+  .part .role{margin-top:10px;font-size:17px;line-height:1.7;color:var(--muted);}
+  .part .io{
+    margin-top:auto;padding-top:22px;
+    font-family:var(--serif);font-size:26px;
+  }
+  .part .io .arrow{color:var(--accent);margin:0 6px;}
+  .part.nlp{border-color:rgba(150,56,44,.55);}
+  .part.nlp .io{font-size:30px;}
+  .part .sub{margin-top:14px;font-size:14px;letter-spacing:.08em;color:var(--muted);}
+
+  /* ---------- cards ---------- */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;align-items:start;}
+  .card{border-top:2px solid var(--ink);padding-top:18px;}
+  .card .no{font-size:12px;letter-spacing:.2em;color:var(--accent);}
+  .card h3{font-size:28px;margin:8px 0 12px;line-height:1.4;}
+  .card p{font-size:17.5px;line-height:1.85;color:var(--body);}
+
+  /* ---------- STT ---------- */
+  .stt-flow{display:flex;align-items:baseline;gap:22px;font-family:var(--serif);}
+  .stt-node{font-size:64px;line-height:1.2;}
+  .stt-arrow{font-size:44px;color:var(--accent);}
+  .reveal p.stt-note{
+    margin-top:42px;max-width:1100px;
+    font-size:22px;line-height:1.9;color:var(--body);
+  }
+  .reveal p.stt-kv{margin-top:22px;font-size:14px;letter-spacing:.14em;color:var(--muted);}
+
+  /* ---------- basic list ---------- */
+  .fund{
+    display:grid;grid-auto-flow:column;grid-template-rows:repeat(4,auto);
+    grid-template-columns:1fr 1fr;column-gap:56px;margin-top:4px;align-content:start;
+  }
+  .fund .item{padding:15px 0;border-bottom:1px solid var(--line);}
+  .fund .item:nth-child(1),.fund .item:nth-child(5){border-top:1px solid var(--line);}
+  .fund .name{
+    display:flex;align-items:baseline;gap:14px;
+    font-family:var(--serif);font-size:21px;line-height:1.4;
+  }
+  .fund .idx{font-size:11px;letter-spacing:.14em;color:var(--accent);}
+  .fund .item p{margin-top:7px;font-size:14.5px;line-height:1.72;color:var(--body);}
+
+  /* ---------- misc ---------- */
+  .reveal .progress{height:3px;color:var(--accent);}
+  .reveal .progress span{background:var(--accent);}
+  .reveal .slide-number{
+    background:none;color:var(--muted);
+    font-family:var(--sans);font-size:13px;letter-spacing:.12em;
+    left:50%;right:auto;bottom:14px;transform:translateX(-50%);
+  }
+  .reveal .controls{color:var(--accent);}
+  .reveal .controls .navigate-left,.reveal .controls .navigate-right,
+  .reveal .controls .navigate-up,.reveal .controls .navigate-down{opacity:.5;}
+
+
+  /* ---------- cover art ---------- */
+  .reveal .slides section.cover{overflow:hidden;}
+  .cover::before{
+    content:"";position:absolute;inset:0;
+    background:url("assets/decor/cover.webp") right center/cover no-repeat;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 40%,rgba(0,0,0,.25) 58%,#000 80%);
+    mask-image:linear-gradient(90deg,transparent 0%,transparent 40%,rgba(0,0,0,.25) 58%,#000 80%);
+  }
+  .cover .frame{position:relative;z-index:1;}
+  .cover-foot .names{letter-spacing:.1em;color:var(--body);font-size:14px;}
+
+  /* ---------- positioning decoration ---------- */
+  .reveal .slides section.pos{overflow:hidden;}
+  .pos::after{
+    content:"";position:absolute;top:0;right:0;width:210px;height:100%;
+    background:url("assets/decor/strip.webp") right center/auto 100% no-repeat;
+    opacity:.35;pointer-events:none;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 55%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 55%);
+  }
+  .pos .frame{position:relative;z-index:1;}
+
+  /* ---------- diagrams ---------- */
+  .diagram{width:100%;height:auto;display:block;margin:0 auto;}
+  .diagram-body{justify-content:center;}
+
+  /* ---------- thanks ---------- */
+  .reveal .slides section.thanks{overflow:hidden;}
+  .thanks::before{
+    content:"";position:absolute;top:0;right:0;width:620px;height:100%;
+    background:url("assets/decor/enso.webp") right center/contain no-repeat;
+    opacity:.8;pointer-events:none;
+    -webkit-mask-image:radial-gradient(80% 80% at 60% 50%,#000 55%,transparent 100%);
+    mask-image:radial-gradient(80% 80% at 60% 50%,#000 55%,transparent 100%);
+  }
+  .thanks .frame{position:relative;z-index:1;justify-content:center;}
+  .thanks-kicker{font-size:13px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase;}
+  .thanks h1{font-size:132px;line-height:1.05;letter-spacing:.01em;margin-top:18px;}
+  .thanks-rule{width:96px;height:2px;background:var(--accent);margin:36px 0 22px;}
+  .thanks-names{font-size:17px;letter-spacing:.12em;color:var(--body);}
+
+  @media print{
+    .reveal .slides section{height:720px;}
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- 1. cover -->
+  <section class="slide cover"><div class="frame">
+    <div class="cover-top">
+      <span class="kicker">NLP 项目 · 开题报告</span>
+      <span class="rule"></span>
+      <span style="font-size:13px;letter-spacing:.18em;color:var(--muted)">SJTU Canvas</span>
+    </div>
+    <div class="cover-main">
+      <h1><span>我再也不想听课了</span></h1>
+      <p class="sub">基于多模态感知与主动教学智能体的<span class="accent">课堂代听</span>与<span class="accent">交互笔记</span>系统</p>
+    </div>
+    <div class="cover-foot">
+      <span class="names">孔德玮 · 亓一辰 · 颜祖一 · 张霁帆</span>
+      <span>← → 翻页</span>
+    </div>
+    </div>
+  </section>
+
+  <!-- 2. pain points -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>01</b>Pain Points</span>
+      <span class="tag">痛点</span>
+    </div>
+    <div class="body">
+      <div class="rows big">
+        <div class="row">
+          <span class="num">01</span>
+          <span class="txt">老师讲课速度与学生理解速度不匹配，自学速度 <span class="sym">≫</span> 听课速度</span>
+        </div>
+        <div class="row">
+          <span class="num">02</span>
+          <span class="txt">早八睡不醒</span>
+        </div>
+        <div class="row">
+          <span class="num">03</span>
+          <span class="txt">俄乌战争</span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 3. target users -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>02</b>Users</span>
+      <span class="tag">目标用户</span>
+    </div>
+    <div class="body">
+      <div class="rows">
+        <div class="row">
+          <span class="num">01</span>
+          <span class="txt">更习惯自学而非听课的学生</span>
+        </div>
+        <div class="row">
+          <span class="num">02</span>
+          <span class="txt">更习惯阅读文本而非看音视频教程的学生</span>
+        </div>
+        <div class="row">
+          <span class="num">03</span>
+          <span class="txt">希望自己掌控学习节奏的学生</span>
+        </div>
+        <div class="row">
+          <span class="num">04</span>
+          <span class="txt">喜欢追根究底、自己动手推导的学生</span>
+        </div>
+        <div class="row">
+          <span class="num">05</span>
+          <span class="txt">睡不醒的学生</span>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 3. positioning -->
+  <section class="slide pos"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>03</b>Positioning</span>
+      <span class="tag">定位</span>
+    </div>
+    <div class="body">
+      <p class="state">利用 SJTU Canvas 平台的直播与录播功能，<br>让 agent <span class="accent">代替学生听课</span>。</p>
+      <p class="state-sub">学生不听讲课，只读 agent 产出的讲稿和 notes 完成学习。</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- 4. overview -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>04</b>System</span>
+      <span class="tag">三部分</span>
+    </div>
+    <h2 class="title-lg">计划的功能</h2>
+    <div class="body">
+      <div class="parts">
+        <div class="part">
+          <span class="no">01</span>
+          <h3>VLM Part</h3>
+          <p class="role">接收课堂画面，理解画面内容</p>
+          <p class="io">画面<span class="arrow">→</span>文本</p>
+        </div>
+        <div class="part">
+          <span class="no">02</span>
+          <h3>STT Part</h3>
+          <p class="role">把课堂语音转成文字</p>
+          <p class="io">语音<span class="arrow">→</span>文字</p>
+        </div>
+        <div class="part nlp">
+          <span class="no">03</span>
+          <h3>NLP Part</h3>
+          <p class="role">接收两路文字，产出讲稿与长 notes</p>
+          <p class="io">两路输入<span class="arrow">→</span>长 notes</p>
+          <p class="sub">基础功能 7 项 · 扩展功能 6 项</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- 5. current system: data flow -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>05</b>Current System</span>
+      <span class="tag">数据流</span>
+    </div>
+    <h2 class="title-lg">现有系统：从音视频到笔记</h2>
+    <div class="body diagram-body">
+      <img class="diagram" src="assets/diagrams/flow.svg" alt="SJTU-Skipper 的音视频流、语音转写、视觉识别与笔记生成流程图">
+    </div>
+    </div>
+  </section>
+
+  <!-- 6. current system: code + plugins -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>06</b>Current System</span>
+      <span class="tag">插件架构</span>
+    </div>
+    <h2 class="title-lg">现有系统：代码组织</h2>
+    <div class="body diagram-body">
+      <img class="diagram" src="assets/diagrams/plugins.svg" alt="SJTU-Skipper 的代码分层与插件依赖 DAG">
+    </div>
+    </div>
+  </section>
+
+  <!-- 7. VLM -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>07</b>VLM Part</span>
+      <span class="tag">视觉</span>
+    </div>
+    <h2 class="title-lg">把课堂画面转成文本</h2>
+    <div class="body">
+      <div class="grid3">
+        <div class="card">
+          <span class="no">01</span>
+          <h3>图像理解与文本化</h3>
+          <p>模型接收课堂画面，理解画面里的内容，把图像转成文本，作为 NLP 部分的一路输入。</p>
+        </div>
+        <div class="card">
+          <span class="no">02</span>
+          <h3>遮挡处理</h3>
+          <p>利用 FFT 做图形匹配，叠合一段时间的画面，消除遮挡。</p>
+        </div>
+        <div class="card">
+          <span class="no">03</span>
+          <h3>图像位置标注</h3>
+          <p>遇到有图的画面时，视觉部分在输出里说明此处有一张什么图。NLP 部分据此判断是否需要回头调用图像，用于示意图重构等环节。</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 6. STT -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>08</b>STT Part</span>
+      <span class="tag">语音</span>
+    </div>
+    <h2 class="title-lg">语音转文字</h2>
+    <div class="body">
+      <div class="stt-flow">
+        <span class="stt-node">课堂语音</span>
+        <span class="stt-arrow">→</span>
+        <span class="stt-node">文字</span>
+      </div>
+      <p class="stt-note">把课堂语音转成文字，作为 NLP 部分的另一路输入。可以直接采用本地或在线的成熟 STT 技术。</p>
+      <p class="stt-kv">本地 / 在线</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- 9. NLP basics -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>09</b>NLP Part</span>
+      <span class="tag">01–07 · 基础</span>
+    </div>
+    <h2 class="title-lg">基础功能</h2>
+    <div class="body">
+      <div class="fund">
+        <div class="item">
+          <div class="name"><span class="idx">01</span>双路文本接收与互补合并</div>
+          <p>语音转写常把公式认错，还满是“看这个式子”之类的口头指代；板书识别公式准，却缺少推导的过渡与解释。两路材料对齐互证、相互补全，产出比单独任一路都更完整的课堂底稿。</p>
+        </div>
+        <div class="item">
+          <div class="name"><span class="idx">02</span>实时分段处理</div>
+          <p>笔记不必等到下课才一次性生成，上课过程中就按阶段实时产出一部分；学生低头做自己的事，每隔十几分钟抬头读一遍刚出炉的阶段笔记，就能随时跟上进度。</p>
+        </div>
+        <div class="item">
+          <div class="name"><span class="idx">03</span>课后长 Notes 输出</div>
+          <p>下课后对整堂课的材料做全局梳理，补齐上下文逻辑，输出一份结构完整、推导严密的长篇正式讲义。</p>
+        </div>
+        <div class="item">
+          <div class="name"><span class="idx">04</span>知识性内容与通知性内容分离</div>
+          <p>定理、证明、例题等学科干货写进主讲义；考试安排、作业要求等教务通知单独剥离归档，避免漏看。</p>
+        </div>
+        <div class="item">
+          <div class="name"><span class="idx">05</span>灌水内容过滤</div>
+          <p>识别并筛掉与课程主线无关的闲聊（可单独折起备查），保证主笔记纯粹干净。</p>
+        </div>
+        <div class="item">
+          <div class="name"><span class="idx">06</span>提问提醒</div>
+          <p>老师抛出问题、点名或让大家思考时及时提醒，并给出“老师问了什么”和默认折叠的“参考答案”，既不错过课堂互动，也留出自己动脑的空间。</p>
+        </div>
+        <div class="item">
+          <div class="name"><span class="idx">07</span>课堂提问单列</div>
+          <p>课后长笔记里把老师提过的问题单独列成一栏，复习时还能顺着这些问题继续想下去。</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 8. NLP extensions A -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>10</b>NLP Part</span>
+      <span class="tag">01–03 · 扩展</span>
+    </div>
+    <h2 class="title-lg">扩展功能</h2>
+    <div class="body">
+      <div class="grid3">
+        <div class="card">
+          <span class="no">01</span>
+          <h3>主动补充说明</h3>
+          <p>不等学生发问就补充：某个东西是怎么想到的、有没有另一种证明方法、它和哪些内容有联系、后面的哪些内容能解决当前留下的疑问。</p>
+        </div>
+        <div class="card">
+          <span class="no">02</span>
+          <h3>示意图重构</h3>
+          <p>把老师手写的示意图转成 SVG 或 LaTeX，嵌进笔记。先结合上下文理解这张图在画什么，再用 SVG 重画回去。代数拓扑、复分析这类图多的课受益明显。</p>
+        </div>
+        <div class="card">
+          <span class="no">03</span>
+          <h3>互动式教学与出题</h3>
+          <p>讲定理时只给大致方向，先不展示过程，学生说出自己的思路，由 agent 判断能不能走通。老师提问过的问题单独留作待答，agent 也可以自己多出一些题。</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 9. NLP extensions B -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>11</b>NLP Part</span>
+      <span class="tag">04–06 · 扩展</span>
+    </div>
+    <h2 class="title-lg">扩展功能（续）</h2>
+    <div class="body">
+      <div class="grid3">
+        <div class="card">
+          <span class="no">04</span>
+          <h3>Manim 视频生成</h3>
+          <p>根据课程内容用 Manim 生成视频。关键在于判断 notes 的哪一部分适合可视化，以及怎么可视化。</p>
+        </div>
+        <div class="card">
+          <span class="no">05</span>
+          <h3>趣味角色扮演</h3>
+          <p>可以用虚构人物讲解课程。这里的交互性弱一些，也可以根据数学知识生成小说，类似《数学女孩》，把课程内容放进去。</p>
+        </div>
+        <div class="card">
+          <span class="no">06</span>
+          <h3>学情记忆与个性化辅导</h3>
+          <p>记住学生不会的内容和已经会了的问题。帮学生听课时，先判断哪些地方需要认真听、哪些可以略过；回答学生问题时，在对方不熟悉的地方展开得更细。</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- 12. expected value -->
+  <section class="slide"><div class="frame">
+    <div class="head">
+      <span class="eyebrow"><b>12</b>Value</span>
+      <span class="tag">预期价值</span>
+    </div>
+    <h2 class="title-lg">预期价值</h2>
+    <div class="body">
+      <div class="grid3">
+        <div class="card">
+          <span class="no">01</span>
+          <h3>把学生从低效听课中解放出来</h3>
+          <p>过滤掉课堂灌水与机械的出勤损耗，把原本需要几个小时正襟危坐听完的课，压缩成十几到几十分钟的高密度文本阅读与独立思考，用更短的时间学完并学透同样的内容。</p>
+        </div>
+        <div class="card">
+          <span class="no">02</span>
+          <h3>自由掌控学习节奏</h3>
+          <p>课上“边做自己的事、边抬头看实时分段笔记跟课”，课后直接精读完整长 Notes。快慢全由学生自己说了算：懂的地方一扫而过，硬核定理随时停下来自己证一遍。</p>
+        </div>
+        <div class="card">
+          <span class="no">03</span>
+          <h3>贴合探究型学生的个性化体验</h3>
+          <p>主动补充“怎么想到的”与替代证法、手绘示意图矢量化重构、不剧透过程的思路验证与高质量出题，再加上懂你哪里不会的长期学情记忆，把单向灌输的网课变成一个能随时追问“十万个为什么”的个人助教。</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- thanks -->
+  <section class="slide thanks"><div class="frame">
+    <p class="thanks-kicker">NLP 项目 · 开题报告</p>
+    <h1>Thanks</h1>
+    <div class="thanks-rule"></div>
+    <p class="thanks-names">孔德玮 · 亓一辰 · 颜祖一 · 张霁帆</p>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script src="vendor/reveal/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0,
+    center: false,
+    hash: true,
+    slideNumber: 'c / t',
+    controls: true,
+    progress: true,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'none',
+    keyboard: true,
+    overview: true
+  });
+</script>
+</body>
+</html>
